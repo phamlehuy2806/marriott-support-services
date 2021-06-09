@@ -1,0 +1,41 @@
+<div style="display: flex; justify-content: space-between;">
+  <app-client-form></app-client-form>
+  <button nz-button nzType="primary" (click)="export()">
+    <i nz-icon nzType="cloud-download"></i>
+    Get file excel
+  </button>
+</div>
+<nz-table #dynamicTable [nzScroll]="{ y: '60vh' }" [nzData]="listOfData" [nzTableLayout]="'auto'" [nzBordered]="true"
+  [nzSimple]="false" [nzLoading]="false" [nzPaginationType]="'small'" [nzPaginationPosition]="'bottom'"
+  [nzShowSizeChanger]="true" [nzFrontPagination]="true" [nzShowPagination]="true"
+  [nzFooter]="null" [nzTitle]="true ? 'Client List' : null" [nzSize]="'default'"
+  (nzCurrentPageDataChange)="currentPageDataChange($event)">
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Email</th>
+      <th>Contact Details</th>
+      <th>NDIS No.</th>
+      <th>Marriott Division</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of dynamicTable.data">
+      <tr>
+        <td>{{ data.displayName }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.contactDetail }}</td>
+        <td>{{ data.NDISNo }}</td>
+        <td>{{ data.marriottDivision }}</td>
+        <td>
+          <a nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzIcon]="iconTpl"
+            (nzOnConfirm)="deleteClient(data._id)">Delete</a>
+          <ng-template #iconTpl>
+            <i nz-icon nzType="question-circle-o" style="color: red;"></i>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</nz-table>
