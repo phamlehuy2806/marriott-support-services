@@ -158,7 +158,7 @@
 
 </nz-space-item>
 <nz-space-item style="display: flex; justify-content: center; align-items: center;">
-  <a nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzIcon]="iconTpl">Delete</a>
+  <a nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzIcon]="iconTpl" (nzOnConfirm)="activityService.deleteActivity(data._id).subscribe()" >Delete</a>
   <ng-template #iconTpl>
     <i nz-icon nzType="delete" nzTheme="outline" style="color: red;"></i>
   </ng-template>

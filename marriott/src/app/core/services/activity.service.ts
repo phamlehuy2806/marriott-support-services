@@ -27,8 +27,8 @@ export class ActivityService {
     return this.http.post<any>(environment.apiEndpoint + 'activities', activity);
   }
 
-  deleteActivity(_id: string): Observable<any> {
-    return this.http.post<any>(environment.apiEndpoint + 'activities/delete', _id);
+  deleteActivity(_id: string | undefined): Observable<any> {
+    return this.http.post<any>(environment.apiEndpoint + 'activities/delete', {_id: _id});
   }
 
   updateActivity(activity: Activity): Observable<any> {
